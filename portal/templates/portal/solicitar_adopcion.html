@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud de Adopción</title>
+</head>
+<body>
+    <h1>Formulario de Solicitud de Adopción 🐶🐱</h1>
+
+    {% if mascota %}
+        <p>Estás solicitando la adopción de: <strong>{{ mascota.nombre }}</strong></p>
+    {% endif %}
+
+    {% if form.errors %}
+        <div style="color:red;">
+            <strong>Errores en el formulario:</strong>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar Solicitud</button>
+    </form>
+
+    <p><a href="{% url 'lista_mascotas' %}">⬅ Volver a Mascotas</a></p>
+</body>
+</html>
